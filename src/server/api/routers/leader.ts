@@ -22,12 +22,6 @@ export const leaderRouter = createTRPCRouter({
 					state: true,
 					fullTribeName: true,
 				},
-				// where: (leaders, { eq, or }) => (
-				// 	or(eq(leaders.tribe, input)),
-				// 	or(eq(leaders.mailingState, input)),
-				// 	or(eq(leaders.firstName, input)),
-				// 	or(eq(leaders.lastName, input))
-				// ),
 				limit: 10,
 				// each offset needs to append 10
 				// for pagination
@@ -46,12 +40,13 @@ export const leaderRouter = createTRPCRouter({
 				state: true,
 				fullTribeName: true,
 			},
-			where: (leaders, { eq, or }) => {
+			where: (leaders, { like, or }) => {
+				const searchQuery = `%${input}%`
 				return or(
-					eq(leaders.tribe, input),
-					eq(leaders.mailingState, input),
-					eq(leaders.firstName, input),
-					eq(leaders.lastName, input)
+					like(leaders.tribe, searchQuery),
+					like(leaders.mailingState, searchQuery),
+					like(leaders.firstName, searchQuery),
+					like(leaders.lastName, searchQuery)
 				);
 			},
 			limit: 10,

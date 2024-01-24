@@ -1,17 +1,31 @@
 import Head from "next/head";
+import { useState } from "react";
 // import Link from "next/link";
 
 import { api } from "~/utils/api";
 
 export default function Home() {
-	const searchQuery = (query: string|null = null) => {
-		return query ?? null
-	}
+	const [searchTerm, setSearchTerm] = useState('');
+
+	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchTerm(event.target.value);
+	};
+
+	// const searchQuery = (query: string|null = null) => {
+	// 	return query ?? null
+	// };
+	const searchQuery = () => {
+		return searchTerm === '' ? null : searchTerm;
+	};
+
 	const leaders = api.leader.getAll.useQuery(searchQuery());
+
 	console.log(leaders);
+
 	const goToLeader = (id: number) => {
 		window.location.assign(`/leader/${id}`);
-	}
+	};
+
 	return (
 		<>
 			<Head>
@@ -30,6 +44,8 @@ export default function Home() {
 								type="text"
 								className="flex-1 px-4 border border-sbca rounded-lg h-8"
 								placeholder="Search..."
+								onChange={handleSearchChange} // Handle the search input changes
+								value={searchTerm} // Controlled input
 							/>
 						</div>
 					</div>
