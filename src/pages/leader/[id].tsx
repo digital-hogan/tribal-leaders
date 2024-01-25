@@ -1,14 +1,19 @@
 import { useRouter } from 'next/router';
+// import { useEffect } from 'react';
 import Head from "next/head";
 import { api } from "../../utils/api";
 
-export default function leader() {
+export default function Leader() {
 	const router = useRouter();
-	const id: number = Number(router.query.id);
-	const leader = api.leader.getLeaderById.useQuery(id)
+	const id = Number(router.query.id);
+	const { data: leaderData, isLoading } = api.leader.getLeaderById.useQuery(id);
+
+	// useEffect(() => {
+	// }, []);
+
 	// @BUG getting undefined on first page query
 	// error message -> expected number, received nan
-	console.log(leader.data);
+	// console.log(leaderData);
 	return (
 		<>
 			<Head>
@@ -18,10 +23,10 @@ export default function leader() {
 			</Head>
 			<main className="flex min-h-screen flex-col items-center justify-center bg-gray-200 text-black">
 				<div className="">
-					{`${leader.data?.firstName} ${leader.data?.lastName}`}
+					{`${leaderData?.firstName} ${leaderData?.lastName}`}
 				</div>
 				<div className="">
-					{ leader.data?.tribe }
+					{ leaderData?.tribe }
 				</div>
 			</main>
 		</>

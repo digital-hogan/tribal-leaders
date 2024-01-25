@@ -1,7 +1,9 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
-
 import { api } from "~/utils/api";
+
+// need to work on a mobile ui
+// cards or something
 
 interface Leader {
 	id: number;
