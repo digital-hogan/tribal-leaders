@@ -7,6 +7,7 @@ export default function leader() {
 	const id: number = Number(router.query.id);
 	const leader = api.leader.getLeaderById.useQuery(id)
 	// @BUG getting undefined on first page query
+	// error message -> expected number, received nan
 	console.log(leader.data);
 	return (
 		<>

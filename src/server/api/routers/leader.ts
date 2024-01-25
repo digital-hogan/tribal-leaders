@@ -6,11 +6,25 @@ import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
 
 
 export const leaderRouter = createTRPCRouter({
+	getTotal: publicProcedure
+	.query(({ctx}) => {
+		return ctx.db.query.leaders.findMany({
+			columns: {
+				id: true,
+			},
+		})
+	}),
 	getAll: publicProcedure
-	.input(z.string().nullable())
+	.input(
+		z.object({
+			query: z.string(),
+			limit: z.number(),
+			offset: z.number(),
+		})
+	)
 	.query(({ input, ctx }) => {
 		// need to implement search
-		if(input == undefined) {
+		if(input.query == undefined) {
 			return ctx.db.query.leaders.findMany({
 				columns: {
 					id: true,
@@ -22,11 +36,11 @@ export const leaderRouter = createTRPCRouter({
 					state: true,
 					fullTribeName: true,
 				},
-				limit: 10,
+				limit: input.limit,
 				// each offset needs to append 10
 				// for pagination
 				// add search based on tribe, first and last name, biaAgency and state
-				offset: 0,
+				offset: input.offset,
 			})
 		}
 		return ctx.db.query.leaders.findMany({
@@ -41,7 +55,7 @@ export const leaderRouter = createTRPCRouter({
 				fullTribeName: true,
 			},
 			where: (leaders, { like, or }) => {
-				const searchQuery = `%${input}%`
+				const searchQuery = `%${input.query}%`
 				return or(
 					like(leaders.tribe, searchQuery),
 					like(leaders.mailingState, searchQuery),
@@ -49,11 +63,11 @@ export const leaderRouter = createTRPCRouter({
 					like(leaders.lastName, searchQuery)
 				);
 			},
-			limit: 10,
+			limit: input.limit,
 			// each offset needs to append 10
 			// for pagination
 			// add search based on tribe, first and last name, biaAgency and state
-			offset: 0,
+			offset: input.offset,
 		})
 	}),
 	getLeaderById: publicProcedure
