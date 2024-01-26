@@ -1,16 +1,22 @@
-// import { z } from 'zod';
-
 import { z } from 'zod';
 import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
-// import { leaders } from '~/server/db/schema';
-
 
 export const leaderRouter = createTRPCRouter({
 	getTotal: publicProcedure
-	.query(({ctx}) => {
+	.input(z.string().nullable())
+	.query(({input, ctx}) => {
 		return ctx.db.query.leaders.findMany({
 			columns: {
 				id: true,
+			},
+			where: (leaders, { like, or }) => {
+				const searchQuery = `%${input}%`
+				return or(
+					like(leaders.tribe, searchQuery),
+					like(leaders.mailingState, searchQuery),
+					like(leaders.firstName, searchQuery),
+					like(leaders.lastName, searchQuery)
+				);
 			},
 		})
 	}),
@@ -23,7 +29,6 @@ export const leaderRouter = createTRPCRouter({
 		})
 	)
 	.query(({ input, ctx }) => {
-		// need to implement search
 		if(input.query == undefined) {
 			return ctx.db.query.leaders.findMany({
 				columns: {
@@ -35,11 +40,9 @@ export const leaderRouter = createTRPCRouter({
 					biaAgency: true,
 					state: true,
 					fullTribeName: true,
+					mailingState: true,
 				},
 				limit: input.limit,
-				// each offset needs to append 10
-				// for pagination
-				// add search based on tribe, first and last name, biaAgency and state
 				offset: input.offset,
 			})
 		}
@@ -53,6 +56,7 @@ export const leaderRouter = createTRPCRouter({
 				biaAgency: true,
 				state: true,
 				fullTribeName: true,
+				mailingState: true,
 			},
 			where: (leaders, { like, or }) => {
 				const searchQuery = `%${input.query}%`
@@ -64,9 +68,6 @@ export const leaderRouter = createTRPCRouter({
 				);
 			},
 			limit: input.limit,
-			// each offset needs to append 10
-			// for pagination
-			// add search based on tribe, first and last name, biaAgency and state
 			offset: input.offset,
 		})
 	}),
