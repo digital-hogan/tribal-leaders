@@ -118,7 +118,7 @@ export default function Home() {
 					</div>
 					{
 						isLoading ? (
-							<div className="h-full w-[1000px] flex justify-center items-center space-x-4">
+							<div className="h-full lg:w-[1000px] flex justify-center items-center space-x-4">
 								<div className="text-2xl">Loading</div>
 								<svg className="animate-spin h-8" fill="#000000" viewBox="0 -0.5 25 25" xmlns="http://www.w3.org/2000/svg">
 									<g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
