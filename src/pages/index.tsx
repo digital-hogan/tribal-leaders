@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { api } from "~/utils/api";
 import LeadersMobile from "../components/leadersMobile"
+// @TODO  create nav headers, about page
 
 export interface Leader {
 	id: number;
@@ -16,6 +17,8 @@ export interface Leader {
 }
 
 export default function Home() {
+	const source = 'https://www.bia.gov/service/tribal-leaders-directory/tld-csvexcel-dataset';
+
 	const [query, setQuery] = useState<{query: string; limit: number; offset: number;}>({
 		query: '',
 		limit: 10,
@@ -93,8 +96,8 @@ export default function Home() {
 				<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 				<link rel="manifest" href="/site.webmanifest" />
 			</Head>
-			<main className="flex min-h-screen flex-col items-center justify-center bg-gray-200 px-8">
-				<div className="lg:min-h-[1000px] xl:min-h-[750px] border flex flex-col justify-center p-12 bg-white rounded-lg md:my-16">
+			<>
+				<div className="lg:min-h-[1000px] xl:min-h-[750px] border flex flex-col justify-center p-12 bg-white rounded-lg md:mt-16">
 					<div className="flex flex-col md:flex-row justify-between items-center mb-4">
 						<div className="flex items-center mb-6 lg:mb-0 md:space-x-6">
 							<h1 className="text-3xl">Tribal Leaders</h1>
@@ -172,18 +175,25 @@ export default function Home() {
 							</>
 						)
 					}
-					<div className="flex justify-between mt-6">
-						<div></div>
-						<div className="">
-							<div className="text-center">Page {currentPage} of {pages}</div>
+					<div className="flex flex-col md:flex-row justify-between mt-2">
+						<div>
+							<p className="text-sm">*All data comes from <a href={source} target="_blank" className="underline underline-offset-2 hover:text-blue-400">BIA dataset</a>. Last pull down was <span className="font-medium">12/12/23</span>.</p>
+							<p className="text-sm">**Data may not be 100% accurate.</p>
 						</div>
+						<div className="text-center mt-4 md:mt-0">Page {currentPage} of {pages}</div>
+					</div>
+					<div className="flex justify-end mt-6">
+						{/* <div className="hidden text-white">placeholder, don't look</div> */}
+						{/* <div className=""> */}
+						{/* 	<div className="text-center">Page {currentPage} of {pages}</div> */}
+						{/* </div> */}
 						<div className="">
 							<button type="button" onClick={goToPreviousPage} disabled={currentPage === 1} className="border px-2 rounded-l-lg disabled:bg-gray-100">Previous</button>
 							<button type="button" onClick={goToNextPage} disabled={currentPage === pages} className="border px-2 rounded-r-lg disabled:bg-gray-100">Next</button>
 						</div>
 					</div>
 				</div>
-			</main>
+			</>
 		</>
 	);
 }

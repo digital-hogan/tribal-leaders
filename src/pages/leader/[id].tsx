@@ -19,12 +19,12 @@ export default function Leader() {
 				<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 				<link rel="manifest" href="/site.webmanifest" />
 			</Head>
-			<main className="flex min-h-screen flex-col items-center justify-center bg-gray-200 text-black px-8">
+			<>
 				<div className="w-full lg:w-[1000px] border flex flex-col justify-center p-4 md:p-12 bg-white rounded-lg lg:my-16">
 					<div className="flex justify-start mb-4">
 						<Link href={'/'} className="border rounded-lg px-2 hover:bg-gray-200">
-							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-8 h-8 text-gray-600 stroke-2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
+							<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8 text-gray-600 stroke-2">
+								<path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
 							</svg>
 						</Link>
 					</div>
@@ -43,14 +43,14 @@ export default function Leader() {
 						) : (
 							<>
 								<h1 className="text-3xl text-center mb-6">Leader Details</h1>
-								<div className="grid grid-cols-2 md:grid-cols-4">
+								<div className="grid grid-cols-1 md:grid-cols-4">
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Job Title:</label>
 										<p>{ leaderData?.jobTitle }</p>
 									</div>
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Name:</label>
-										<p>{`${leaderData?.firstName} ${leaderData?.lastName}`}</p>
+										<p>{`${leaderData?.firstName} ${leaderData?.middleName} ${leaderData?.lastName}`}</p>
 									</div>
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Tribe:</label>
@@ -60,20 +60,37 @@ export default function Leader() {
 										<label className="text-lg text-gray-600 font-medium border-b-2">State:</label>
 										<p>{ leaderData?.state }</p>
 									</div>
+									<div className="border p-2 md:col-span-full">
+										<label className="text-lg text-gray-600 font-medium border-b-2">Service:</label>
+										<p>Date Elected - { leaderData?.dateElected }</p>
+										<p>Next Election - { leaderData?.nextElection }</p>
+									</div>
+									<div className="border p-2 md:col-span-full">
+										<label className="text-lg text-gray-600 font-medium border-b-2">Notes:</label>
+										<p>{ leaderData?.notes == '' ? 'N/A' : leaderData?.notes }</p>
+									</div>
 								</div>
 								<h2 className="text-2xl text-center my-6">Contact Info</h2>
 								<div className="grid grid-cols-1 md:grid-cols-2">
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Office Phone:</label>
-										<p>{leaderData?.phone}</p>
+										<div>
+											<a href={ leaderData?.phone ?? '' } className="underline underline-offset-2 hover:text-blue-400">{ leaderData?.phone }</a>
+										</div>
 									</div>
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Email:</label>
-										<p>{leaderData?.email}</p>
+										<div>
+											<a href={leaderData?.email ?? ''} className="underline underline-offset-2 hover:text-blue-400">{ leaderData?.email }</a>
+										</div>
+									</div>
+									<div className="md:col-span-2 border p-2">
+										<label className="text-lg text-gray-600 font-medium border-b-2">Address:</label>
+										<p>{ leaderData?.physicalAddress }, { leaderData?.city } { leaderData?.state }, { leaderData?.zipCode }</p>
 									</div>
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Mailing Address:</label>
-										<p>{leaderData?.mailingAddress}</p>
+										<p>{ leaderData?.mailingAddress }</p>
 									</div>
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Mailing City:</label>
@@ -85,7 +102,7 @@ export default function Leader() {
 									</div>
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Mailing Zip:</label>
-										<p>{leaderData?.mailingZip}</p>
+										<p>{ leaderData?.mailingZip }</p>
 									</div>
 									{/* @TODO add copy email/phone, or maybe just link it to 'a' tag */}
 									{/* @TODO add hover text to fields that can be copied or click */}
@@ -95,7 +112,7 @@ export default function Leader() {
 						)
 					}
 				</div>
-			</main>
+			</>
 		</>
 	);
 }
