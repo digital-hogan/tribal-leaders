@@ -75,13 +75,13 @@ export default function Leader() {
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Office Phone:</label>
 										<div>
-											<a href={ leaderData?.phone ?? '' } className="underline underline-offset-2 hover:text-blue-400">{ leaderData?.phone }</a>
+											<a href={`tel:+${ leaderData?.phone ?? ''}`} className="underline underline-offset-2 hover:text-blue-400">{ leaderData?.phone }</a>
 										</div>
 									</div>
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Email:</label>
 										<div>
-											<a href={leaderData?.email ?? ''} className="underline underline-offset-2 hover:text-blue-400">{ leaderData?.email }</a>
+											<a href={`mailto:${leaderData?.email ?? ''}`} className="underline underline-offset-2 hover:text-blue-400">{ leaderData?.email }</a>
 										</div>
 									</div>
 									<div className="md:col-span-2 border p-2">
