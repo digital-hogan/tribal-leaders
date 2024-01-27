@@ -75,7 +75,7 @@ export default function Leader() {
 									<div className="border p-2">
 										<label className="text-lg text-gray-600 font-medium border-b-2">Office Phone:</label>
 										<div>
-											<a href={`tel:+${ leaderData?.phone ?? ''}`} className="underline underline-offset-2 hover:text-blue-400">{ leaderData?.phone }</a>
+											<a href={`tel:+1${ leaderData?.phone ?? ''}`} className="underline underline-offset-2 hover:text-blue-400">{ leaderData?.phone }</a>
 										</div>
 									</div>
 									<div className="border p-2">

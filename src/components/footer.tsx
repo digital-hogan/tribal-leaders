@@ -1,4 +1,4 @@
-import { GithubLogo, Envelope, Globe } from "@phosphor-icons/react";
+import { GithubLogo, Envelope, Globe, TwitterLogo } from "@phosphor-icons/react";
 
 export default function Footer () {
 	return (
@@ -17,6 +17,11 @@ export default function Footer () {
 				<a href="https://joetwebdev.io" target="_blank" className="hover:bg-white rounded-full">
 					<div className="border border-black rounded-full p-2">
 						<Globe size={32} />
+					</div>
+				</a>
+				<a href="https://twitter.com/dk_joe60" target="_blank" className="hover:bg-white rounded-full">
+					<div className="border border-black rounded-full p-2">
+						<TwitterLogo size={32} />
 					</div>
 				</a>
 			</div>
