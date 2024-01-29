@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Link from "next/link";
-import { Leader } from '~/pages/index';
+import type { Leader } from '~/pages/index';
 
 interface LeadersMobileProps {
 	leaderList: Leader[];
