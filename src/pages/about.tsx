@@ -1,7 +1,7 @@
 export default function About() {
 	return (
 		<>
-			whoops, there's nothing here. Stay tuned for updates.
+			<p>whoops, theres nothing here. Stay tuned for updates.</p>
 		</>
 	)
 }
