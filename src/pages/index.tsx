@@ -2,8 +2,8 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { api } from "~/utils/api";
 import LeadersMobile from "../components/leadersMobile"
-// @TODO  create nav headers, about page
 
+// move interface to its own file
 export interface Leader {
 	id: number;
 	fullTribeName: string | null;
@@ -97,7 +97,7 @@ export default function Home() {
 				<link rel="manifest" href="/site.webmanifest" />
 			</Head>
 			<>
-				<div className="lg:min-h-[1000px] xl:min-h-[750px] border flex flex-col justify-center p-12 bg-white rounded-lg md:mt-16">
+				<div className="lg:min-h-[1000px] xl:min-h-[750px] border flex flex-col justify-center p-8 md:p-12 bg-white rounded-lg">
 					<div className="flex flex-col md:flex-row justify-between items-center mb-4">
 						<div className="flex items-center mb-6 lg:mb-0 md:space-x-6">
 							<h1 className="text-3xl">Tribal Leaders</h1>
