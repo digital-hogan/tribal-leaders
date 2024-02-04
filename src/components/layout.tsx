@@ -46,7 +46,7 @@ export default function Layout ({ children }: LayoutProps) {
 					isVisible ? 'opacity-100' : 'opacity-0'
 				}`}
 			>
-				<CaretDoubleUp size={32} />
+				<CaretDoubleUp size={44} />
 			</button>
 			<Footer />
 		</div>
