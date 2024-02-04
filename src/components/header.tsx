@@ -18,7 +18,7 @@ export default function Header() {
 
 	return (
 		<div className="flex flex-col">
-			<header className="flex w-full items-center justify-between bg-gray-700 text-white px-12 2xl:px-96 py-4">
+			<header className="flex w-full items-center justify-between bg-gray-700 text-white px-6 md:px-12 2xl:px-96 py-4">
 				<div className="lg:hidden w-8"></div>
 				<div className="text-2xl font-semibold justify-self-center">Your Leadership</div>
 				<nav className="h-8">
@@ -49,11 +49,11 @@ export default function Header() {
 			{
 				open ? (
 					<ul className="flex flex-col justify-center bg-gray-700">
-						<li className="py-2 text-center border-t border-gray-200">
-							<Link href="/" className={"text-xl font-semibold text-gray-200 hover:text-sky-300 " + (router.route == "/" ? "" : "")}>Home</Link>
+						<li className="text-center border-t border-gray-200">
+							<Link href="/" className={"py-2 text-xl font-semibold text-gray-200 block w-full h-full hover:text-sky-300 " + (router.route == "/" ? "" : "")}>Home</Link>
 						</li>
-						<li className="py-2 text-center border-t border-gray-200">
-							<Link href="/about" className={"text-xl font-semibold text-gray-200 hover:text-sky-300 " + (router.route == "/about" ? "" : "")}>About</Link>
+						<li className="text-center border-t border-gray-200">
+							<Link href="/about" className={"py-2 text-xl font-semibold text-gray-200 block w-full h-full hover:text-sky-300 " + (router.route == "/about" ? "" : "")}>About</Link>
 						</li>
 						{/* <li className="py-2"> */}
 							{/* buy a coffee link */}
