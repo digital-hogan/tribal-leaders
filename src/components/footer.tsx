@@ -26,7 +26,7 @@ export default function Footer () {
 				</a>
 			</div>
 			<div className="text-center mx-4 pb-4">
-				© 2024 Theron Joe @Digital Hogan. <a href="https://github.com/digital-hogan/tribal-leaders" target="_blank" className="hover:text-blue-400 hover:underline">This website is open source.</a>
+				© 2024 Theron Joe <a href="https://github.com/digital-hogan/tribal-leaders" target="_blank" className="hover:text-blue-400 hover:underline">This website is open source.</a>
 			</div>
 		</div>
 	);
